@@ -18,7 +18,7 @@ public class YesNoQuestionPane extends javax.swing.JPanel {
      */
     public YesNoQuestionPane(YesNoQuestion quest) {
         initComponents();
-        jLabel3.setText(quest.getQuestion());
+        questionLabel.setText(quest.getQuestion());
     }
 
     /**
@@ -30,34 +30,34 @@ public class YesNoQuestionPane extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        questionLabel = new javax.swing.JLabel();
+        trueButton = new javax.swing.JButton();
+        falseButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(237, 232, 227));
 
-        jLabel3.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(25, 29, 99));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Your question goes here");
+        questionLabel.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        questionLabel.setForeground(new java.awt.Color(25, 29, 99));
+        questionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        questionLabel.setText("Your question goes here");
 
-        jButton2.setBackground(new java.awt.Color(244, 243, 246));
-        jButton2.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
-        jButton2.setText("True");
-        jButton2.setFocusPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        trueButton.setBackground(new java.awt.Color(244, 243, 246));
+        trueButton.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
+        trueButton.setText("True");
+        trueButton.setFocusPainted(false);
+        trueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                trueButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(244, 243, 246));
-        jButton3.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
-        jButton3.setText("False");
-        jButton3.setFocusPainted(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        falseButton.setBackground(new java.awt.Color(244, 243, 246));
+        falseButton.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
+        falseButton.setText("False");
+        falseButton.setFocusPainted(false);
+        falseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                falseButtonActionPerformed(evt);
             }
         });
 
@@ -68,39 +68,39 @@ public class YesNoQuestionPane extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                    .addComponent(trueButton, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                    .addComponent(falseButton, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
                 .addGap(189, 189, 189))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addComponent(questionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(questionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(trueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(falseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(149, 149, 149))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void trueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trueButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_trueButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void falseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_falseButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_falseButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton falseButton;
+    private javax.swing.JLabel questionLabel;
+    private javax.swing.JButton trueButton;
     // End of variables declaration//GEN-END:variables
 }
