@@ -5,6 +5,8 @@
 package easyquiz;
 
 import java.awt.BorderLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLayeredPane;
 
 /**
@@ -41,7 +43,8 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(74, 232, 227));
         setMinimumSize(new java.awt.Dimension(500, 400));
-        setPreferredSize(new java.awt.Dimension(500, 400));
+
+        jPanel1.setBackground(new java.awt.Color(237, 232, 227));
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -118,15 +121,21 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(67, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        YesNoQuestion quest = new YesNoQuestion();
+        Quiz q = new Quiz("Test Quiz");
+        q.addQuestion(new YesNoQuestion("Is tabata a good person?",true));
+        q.addQuestion(new Ans3Question("Is tabata a good person?","yes","of course", "absolutely", 3));
         this.remove(jPanel1);
-        this.add(quest,BorderLayout.CENTER);
+        if(q.getFirstQuestion() instanceof YesNoQuestion){
+            this.add(new YesNoQuestionPane((YesNoQuestion)q.getFirstQuestion()),BorderLayout.CENTER);
+        }else{
+            this.add(new Ans3QuestionPane((Ans3Question)q.getFirstQuestion()),BorderLayout.CENTER);
+        }
         this.revalidate();
         this.repaint();
         

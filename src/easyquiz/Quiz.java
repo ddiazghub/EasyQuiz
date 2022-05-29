@@ -14,13 +14,17 @@ import javax.swing.JPanel;
 public class Quiz {
 
     private String title;
-    private ArrayList<JPanel> questions;
+    private ArrayList<Question> questions;
 
     Quiz(String t) {
         this.title = t;
+        questions = new ArrayList();
     }
-    public JPanel getFirstQuestion(){
+    public Question getFirstQuestion(){
         return questions.get(0);
+    }
+    public void addQuestion(Question q){
+        questions.add(q);
     }
 
 }

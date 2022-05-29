@@ -8,13 +8,13 @@ package easyquiz;
  *
  * @author aland
  */
-public class YesNoQuestion extends Question {
-
-    private boolean ans;
-
-    YesNoQuestion(String quest, boolean ans) {
-        super(quest);
-        this.ans = ans;
+public class Question {
+    private String question;
+    Question(String quest){
+        this.question = quest;
     }
 
+    public String getQuestion() {
+        return question;
+    }
 }

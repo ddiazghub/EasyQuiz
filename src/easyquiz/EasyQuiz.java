@@ -25,8 +25,8 @@ public class EasyQuiz {
 //        } catch (Exception ex) {
 //            System.out.println(ex);
 //        }
-        UIManager.put("ToggleButton.select", new Color(69, 196, 134) );
         UIManager.put("Button.select", new Color(69, 196, 134) );
+        
         
         MainFrame frame = new MainFrame();
         frame.setLocationRelativeTo(null);
