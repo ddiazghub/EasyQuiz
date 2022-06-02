@@ -42,6 +42,7 @@
       </toolsSet>
       <compileType>
         <ccTool>
+          <developmentMode>5</developmentMode>
           <architecture>2</architecture>
           <standard>8</standard>
           <incDir>

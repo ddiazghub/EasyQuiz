@@ -42,8 +42,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=
-CXXFLAGS=
+CCFLAGS=-m64
+CXXFLAGS=-m64
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -65,7 +65,7 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libNativeTCPSocket.${CND_DLIB_EXT}: $
 ${OBJECTDIR}/_ext/fd2c4aee/TCPSocket.o: /C/Users/david/code/uninorte/22-10/ds2/java/easyquiz/NativeTCPSocket/TCPSocket.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/fd2c4aee
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/fd2c4aee/TCPSocket.o /C/Users/david/code/uninorte/22-10/ds2/java/easyquiz/NativeTCPSocket/TCPSocket.cpp
+	$(COMPILE.cc) -O2 -I/C/Program\ Files/Java/jdk1.8.0_201/include -I/C/Program\ Files/Java/jdk1.8.0_201/include/win32 -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/fd2c4aee/TCPSocket.o /C/Users/david/code/uninorte/22-10/ds2/java/easyquiz/NativeTCPSocket/TCPSocket.cpp
 
 # Subprojects
 .build-subprojects:

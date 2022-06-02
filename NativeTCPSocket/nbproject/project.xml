@@ -10,7 +10,6 @@
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
-                <sourceRootElem>C:\Users\david\code\uninorte\22-10\ds2\java\TCPSocket\NativeTCPSocket</sourceRootElem>
                 <sourceRootElem>C:\Users\david\code\uninorte\22-10\ds2\java\easyquiz\NativeTCPSocket</sourceRootElem>
             </sourceRootList>
             <confList>

@@ -10,6 +10,7 @@ import easyquiz.Quiz;
 import easyquiz.tcpsocket.TCPServer;
 import easyquiz.tcpsocket.TCPSocket;
 import easyquiz.thread.JThread;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -47,6 +48,8 @@ public class EasyQuizServer extends TCPServer {
     
     
     public void start() {
+        System.out.println("El servidor ha inicializado");
+        System.out.println(new File("").getAbsolutePath());
         while (true) {
             PlayerHandler client = new PlayerHandler(this.accept());
             System.out.println("New client: " + client.getSocket().toString());

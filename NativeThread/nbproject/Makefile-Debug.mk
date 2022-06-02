@@ -65,7 +65,7 @@ LDLIBSOPTIONS=
 ${OBJECTDIR}/_ext/a31bd810/Thread.o: /C/Users/david/code/uninorte/22-10/ds2/java/easyquiz/NativeThread/Thread.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/a31bd810
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/C/Program\ Files/Java/jdk1.8.0_201/include -I/C/Program\ Files/Java/jdk1.8.0_201/include/win32 -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/a31bd810/Thread.o /C/Users/david/code/uninorte/22-10/ds2/java/easyquiz/NativeThread/Thread.cpp
+	$(COMPILE.cc) -O2 -I/C/Program\ Files/Java/jdk1.8.0_201/include -I/C/Program\ Files/Java/jdk1.8.0_201/include/win32 -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/a31bd810/Thread.o /C/Users/david/code/uninorte/22-10/ds2/java/easyquiz/NativeThread/Thread.cpp
 
 # Subprojects
 .build-subprojects:

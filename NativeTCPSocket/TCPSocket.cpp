@@ -65,7 +65,7 @@ JNIEXPORT jint JNICALL Java_easyquiz_tcpsocket_TCPSocket_bind(JNIEnv *env, jclas
     struct sockaddr_in address;
     
     address.sin_family = AF_INET;
-    address.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
+    address.sin_addr.S_un.S_addr = inet_addr("0.0.0.0");
     address.sin_port = htons(port);
     
     if (bind(handle, (struct sockaddr *) &address, sizeof(address)) == SOCKET_ERROR)

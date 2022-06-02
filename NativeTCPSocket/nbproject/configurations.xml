@@ -28,7 +28,6 @@
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>C:\Users\david\code\uninorte\22-10\ds2\java\TCPSocket\NativeTCPSocket</Elem>
     <Elem>C:\Users\david\code\uninorte\22-10\ds2\java\easyquiz\NativeTCPSocket</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
@@ -47,6 +46,7 @@
           </incDir>
         </cTool>
         <ccTool>
+          <developmentMode>5</developmentMode>
           <architecture>2</architecture>
           <standard>8</standard>
           <incDir>
@@ -85,6 +85,12 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <architecture>2</architecture>
+          <standard>8</standard>
+          <incDir>
+            <pElem>C:/Program Files/Java/jdk1.8.0_201/include</pElem>
+            <pElem>C:/Program Files/Java/jdk1.8.0_201/include/win32</pElem>
+          </incDir>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>

@@ -47,7 +47,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.cards.show(this.mainPanel, "main");
         
         this.room = null;
-        this.socket = new TCPSocket(new SocketAddress("127.0.0.1", 3000));
+        this.socket = new TCPSocket(new SocketAddress("20.211.41.7", 3000));
         this.handler = new SocketHandler(this.socket);
         
         this.waitingRoomPanel = new WaitingRoom();

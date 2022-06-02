@@ -4,6 +4,7 @@
  */
 package easyquiz.thread;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.nio.file.Paths;
 import java.security.AccessController;
@@ -20,7 +21,7 @@ public class JThread {
     
     static {
         try {
-            System.setProperty("java.library.path", Paths.get(System.getProperty("user.dir"), "/lib").toString());
+            System.setProperty("java.library.path", Paths.get(new File(".").getAbsolutePath(), "/lib").toString());
             
             final Field sysPathsField = ClassLoader.class.getDeclaredField("sys_paths");
             sysPathsField.setAccessible(true);

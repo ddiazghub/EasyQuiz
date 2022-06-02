@@ -90,6 +90,7 @@ public class CreateQuiz extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void joinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinBtnActionPerformed
+        /*
         Quiz q = new Quiz("Test Quiz");
         TopBar bar = new TopBar(nameField.getText(),"Test Quiz");
         //q.addQuestion(new TrueFalseQuestion("Is tabata a good person?",true));
@@ -103,7 +104,7 @@ public class CreateQuiz extends javax.swing.JPanel {
         }
         this.revalidate();
         this.repaint();
-
+        */
     }//GEN-LAST:event_joinBtnActionPerformed
 
 
