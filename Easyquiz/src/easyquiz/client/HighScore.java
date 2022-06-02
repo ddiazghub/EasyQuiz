@@ -4,8 +4,12 @@
  */
 package easyquiz.client;
 
+import easyquiz.Player;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.Collections;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -14,7 +18,8 @@ import java.awt.Font;
  * @author aland
  */
 public class HighScore extends javax.swing.JPanel {
-
+    private DefaultTableModel model;
+    
     /**
      * Creates new form HighScore
      */
@@ -25,8 +30,26 @@ public class HighScore extends javax.swing.JPanel {
         highTable.getColumnModel().getColumn(0).setPreferredWidth(45);
         highTable.getColumnModel().getColumn(0).setMaxWidth(90);
         
+        this.model = new DefaultTableModel();
+        this.model.addColumn("Place");
+        this.model.addColumn("User");
+        this.model.addColumn("Score");
+        this.highTable.setModel(this.model);
     }
 
+    public void showResults(ArrayList<Player> players) {
+        Collections.sort(players, (p1, p2) -> {
+            return p1.getScore() - p2.getScore();
+        });
+        
+        this.model.setRowCount(0);
+        
+        for (int i = 1; i <= players.size(); i++) {
+            this.model.addRow(new Object[] {
+                
+            });
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,12 +70,12 @@ public class HighScore extends javax.swing.JPanel {
         highLabel.setForeground(new java.awt.Color(25, 29, 99));
         highLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         highLabel.setText("Highscore!");
-        highLabel.setAlignmentX(0.5F);
-        highLabel.setMaximumSize(new java.awt.Dimension(500, 150));
-        highLabel.setPreferredSize(new java.awt.Dimension(500, 100));
+        highLabel.setMaximumSize(new java.awt.Dimension(250, 100));
+        highLabel.setPreferredSize(new java.awt.Dimension(250, 100));
         add(highLabel, java.awt.BorderLayout.NORTH);
 
-        jScrollPane1.setFont(new java.awt.Font("Segoe Print", 1, 12)); // NOI18N
+        jScrollPane1.setMaximumSize(new java.awt.Dimension(32767, 800));
+        jScrollPane1.setOpaque(false);
 
         highTable.setFont(new java.awt.Font("Segoe Print", 1, 12)); // NOI18N
         highTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -81,18 +104,9 @@ public class HighScore extends javax.swing.JPanel {
             new String [] {
                 "Place", "User", "Score"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         highTable.setMaximumSize(new java.awt.Dimension(2147483647, 1200));
-        highTable.setPreferredSize(new java.awt.Dimension(225, 800));
-        highTable.setRowSelectionAllowed(false);
+        highTable.getTableHeader().setResizingAllowed(false);
         highTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(highTable);
 
