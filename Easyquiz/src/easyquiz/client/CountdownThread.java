@@ -17,6 +17,13 @@ import javax.swing.JLabel;
 public class CountdownThread extends Timer {
     private JLabel label;
     
+    /**
+     * Creates a thread handling a countdown
+     * 
+     * @param deadline  The time limit
+     * @param label  The label showing the countdown
+     * @param callback  The procedure executed on timeout 
+     */
     public CountdownThread(long deadline, JLabel label, Runnable callback) {
         super(deadline - System.currentTimeMillis(), callback);
         this.label = label;

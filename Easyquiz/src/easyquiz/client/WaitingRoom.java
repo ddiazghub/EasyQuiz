@@ -60,6 +60,7 @@ public class WaitingRoom extends javax.swing.JPanel {
         numberLabel = new javax.swing.JLabel();
         hostLabel = new javax.swing.JLabel();
         startButton = new javax.swing.JButton();
+        exitBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(237, 232, 227));
 
@@ -69,7 +70,6 @@ public class WaitingRoom extends javax.swing.JPanel {
         titleLabel.setText("Waiting for players...");
 
         codeLabel.setEditable(false);
-        codeLabel.setBackground(null);
         codeLabel.setBorder(null);
         codeLabel.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         codeLabel.setText("Code: 00000000-0000-0000-C000-000000000046");
@@ -115,6 +115,17 @@ public class WaitingRoom extends javax.swing.JPanel {
             }
         });
 
+        exitBtn.setBackground(new java.awt.Color(255, 51, 51));
+        exitBtn.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
+        exitBtn.setForeground(new java.awt.Color(244, 243, 246));
+        exitBtn.setText("Exit");
+        exitBtn.setFocusPainted(false);
+        exitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,11 +140,13 @@ public class WaitingRoom extends javax.swing.JPanel {
                 .addGap(46, 46, 46))
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(playersPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(playersPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -148,7 +161,9 @@ public class WaitingRoom extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(playersPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exitBtn))
                 .addGap(17, 17, 17))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -161,9 +176,14 @@ public class WaitingRoom extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_startButtonActionPerformed
 
+    private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
+        MainFrame.getInstance().exitRoom();
+    }//GEN-LAST:event_exitBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane codeLabel;
+    private javax.swing.JButton exitBtn;
     private javax.swing.JLabel hostLabel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel numberLabel;

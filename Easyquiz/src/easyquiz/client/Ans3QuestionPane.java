@@ -34,19 +34,30 @@ public class Ans3QuestionPane extends javax.swing.JPanel {
         this.buttons.add(opt2Button);
         this.buttons.add(opt3Button);
     }
-
+    /**
+     *@return The chosen answer
+     */
     public int getSelected() {
         return selected;
     }
-
+    /**
+     *@return The points obtained by the question
+     */
     public int getObtainedPoints() {
         return obtainedPoints;
     }
-
+    /**
+     * @return True if the selected answers is the right one.
+     */
     public boolean correct() {
         return this.selected == this.question.getCorrectOptionIndex();
     }
     
+    /**
+     * The following method changes the screen acording to the players answer.
+     * <p>
+     * The buttons colors and the score change accordingly.
+     */
     public void showResults() {
         if (this.correct()) {
             System.out.println(this.obtainedPoints);
@@ -62,6 +73,13 @@ public class Ans3QuestionPane extends javax.swing.JPanel {
         }
     }
     
+    /**
+     * This method processes the given answer and calculates the points given
+     * <p>
+     * The points are caclulated with the remaining time
+     * 
+     * @param index  The number assigned to the selected button
+     */
     public void selectOption(int index) {
         if (this.selected > -1)
             return;
@@ -79,8 +97,16 @@ public class Ans3QuestionPane extends javax.swing.JPanel {
         }
     }
     
+    /**
+     * Gets the question details and places them in their place in the panel
+     * <p>
+     * 
+     * @param quest  The question object
+     * @param deadline  The time limit to answer
+     */
     public void showQuestion(Ans3Question quest, long deadline) {
         for (JButton b : this.buttons) {
+            b.setEnabled(true);
             b.setFocusable(true);
             b.setBackground(new Color(244, 243, 246));
         }
@@ -99,9 +125,13 @@ public class Ans3QuestionPane extends javax.swing.JPanel {
         this.countdownThread = new CountdownThread(deadline, this.countdownLabel, () -> {
             if (this.selected > -1) {
                 this.showResults();
+            } else {
+                for (JButton button : this.buttons) {
+                    button.setEnabled(false);
+                }
             }
             
-            //MainFrame.getInstance().showQuestion(question, deadline);
+            
         });
         
         this.countdownThread.start();

@@ -33,12 +33,14 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="startButton" min="-2" pref="206" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="playersPanel" max="32767" attributes="0"/>
-                      <Component id="jPanel2" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="exitBtn" min="-2" pref="212" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="startButton" min="-2" pref="206" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="playersPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -56,7 +58,10 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="playersPanel" pref="193" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="startButton" min="-2" pref="32" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="startButton" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="exitBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -78,9 +83,6 @@
     <Component class="javax.swing.JTextPane" name="codeLabel">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color type="null"/>
-        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -162,6 +164,24 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="exitBtn">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe Print" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="f6" green="f3" red="f4" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Exit"/>
+        <Property name="focusPainted" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

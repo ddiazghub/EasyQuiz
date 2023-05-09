@@ -34,7 +34,7 @@
   <confs>
     <conf name="Debug" type="2">
       <toolsSet>
-        <compilerSet>default</compilerSet>
+        <compilerSet>MinGW32|MinGW</compilerSet>
         <dependencyChecking>true</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
@@ -47,8 +47,9 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
-          <architecture>2</architecture>
+          <architecture>1</architecture>
           <standard>8</standard>
+          <commandlineTool>g++</commandlineTool>
           <incDir>
             <pElem>C:/Program Files/Java/jdk1.8.0_201/include</pElem>
             <pElem>C:/Program Files/Java/jdk1.8.0_201/include/win32</pElem>

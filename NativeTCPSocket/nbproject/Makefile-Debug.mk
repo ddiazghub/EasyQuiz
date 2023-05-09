@@ -21,7 +21,7 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=MinGW_1-Windows
+CND_PLATFORM=MinGW32-Windows
 CND_DLIB_EXT=dll
 CND_CONF=Debug
 CND_DISTDIR=dist
@@ -42,8 +42,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=-m64
-CXXFLAGS=-m64
+CCFLAGS=-m32
+CXXFLAGS=-m32
 
 # Fortran Compiler Flags
 FFLAGS=

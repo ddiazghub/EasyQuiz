@@ -5,6 +5,7 @@
 package easyquiz.server;
 
 import easyquiz.Ans3Question;
+import easyquiz.Player;
 import easyquiz.Question;
 import easyquiz.Quiz;
 import easyquiz.tcpsocket.TCPServer;
@@ -34,12 +35,28 @@ public class EasyQuizServer extends TCPServer {
         this.rooms = new HashMap<>();
         this.quizzes = new HashMap<>();
         
-        Quiz test = new Quiz("Quiz de prueba");
-        test.addQuestion(new Ans3Question("Pregunta", "No se", "Ni idea", "???", 0));
-        test.addQuestion(new Ans3Question("Pregunta2", "No se2", "Ni idea2", "???2", 1));
-        test.addQuestion(new Ans3Question("Pregunta3", "No se3", "Ni idea3", "???3", 2));
+        Quiz capitals = new Quiz("Capitales");
+        capitals.addQuestion(new Ans3Question("Capital de Nicaragua", "Managua", "Tegucigalpa", "San José", 0));
+        capitals.addQuestion(new Ans3Question("Capital de Nicaragua", "Madrid", "Palikir", "Lima", 2));
+        capitals.addQuestion(new Ans3Question("Capital de Indonesia", "Ankara", "Minsk", "Jakarta", 2));
+        capitals.addQuestion(new Ans3Question("Capital de las Bahamas", "Nassau", "Cairo", "Copenhague", 0));
+        capitals.addQuestion(new Ans3Question("Capital de Portugal", "Buenos Aires", "Lisboa", "Caracas", 1));
         
-        this.quizzes.put(0, test);
+        Quiz countries = new Quiz("Países");
+        countries.addQuestion(new Ans3Question("¿En cuál país están las 10 ciudades mas frías del mundo?", "Canada", "Noruega", "Rusia", 2));
+        countries.addQuestion(new Ans3Question("¿Cuál país tiene 3 ciudades capitales", "Sudáfrica", "Australia", "China", 0));
+        countries.addQuestion(new Ans3Question("¿Cuál de estos países tiene territorio que abarca en total 12 zonas zonas horarias?", "Rusia", "Francia", "China", 1));
+        countries.addQuestion(new Ans3Question("¿Cuál es el país más pequeño?", "Ciudad del vaticano", "Liechtenstein", "Chipre", 0));
+        countries.addQuestion(new Ans3Question("¿Cuál de estos países NO es cruzado por el Ecuador", "Ecuador", "Kenia", "Egipto", 2));
+        
+        Quiz quiz3 = new Quiz("Quiz 3");
+        quiz3.addQuestion(new Ans3Question("¿En cuál ciudad está el edificio más alto del mundo?", "Dubai", "Nueva York", "Shanghai", 0));
+        quiz3.addQuestion(new Ans3Question("¿Cuál es el continente más elevado con una altura promedio de 2.51 km?", "Asia", "Europa", "Antártica", 2));
+        quiz3.addQuestion(new Ans3Question("¿Cuál es la nación-isla más pequeña del mundo?", "Barbados", "Nauru", "Malvinas", 1));
+        quiz3.addQuestion(new Ans3Question("¿Cuál es la capital más elevada del mundo?", "Bogotá, Colombia", "Kathmandú, Nepal", "La Paz, Bolivia", 2));
+        quiz3.addQuestion(new Ans3Question("¿Cuál es el continente más grande del mundo?", "America del Sur", "Africa", "Asia", 2));
+        
+        this.quizzes.put(0, capitals);
     }
 
     public HashMap<UUID, Room> getRooms() {
@@ -48,7 +65,7 @@ public class EasyQuizServer extends TCPServer {
     
     
     public void start() {
-        System.out.println("El servidor ha inicializado");
+        System.out.println("Server started");
         System.out.println(new File("").getAbsolutePath());
         while (true) {
             PlayerHandler client = new PlayerHandler(this.accept());
@@ -78,10 +95,22 @@ public class EasyQuizServer extends TCPServer {
     public void startRoom(UUID roomCode) {
         Room room = this.rooms.get(roomCode);
         room.start();
+        System.out.println("Started room: " + roomCode);
+    }
+    
+    public void removePlayer(int playerId, UUID roomCode) {
+        Room room = this.rooms.get(roomCode);
+        room.removePlayer(playerId);
+    }
+    
+    public void deleteRoom(UUID roomCode) {
+        this.rooms.remove(roomCode);
+        System.out.println("Deleted room: " + roomCode);
     }
     
     public void endRoom(UUID roomCode) {
         this.rooms.remove(roomCode);
+        System.out.println("Deleted room: " + roomCode);
     }
     
     public static EasyQuizServer getInstance() {

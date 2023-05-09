@@ -122,46 +122,4 @@ public class TCPSocket implements Closeable {
             throw new IOException("Failed to close Socket");
         }
     }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        /*new JThread(() -> {
-            TCPServer server = new TCPServer(3000);
-            System.out.println("Server started successfully");
-            TCPSocket client = server.accept();
-        
-            while (true) {
-                byte[] buf = client.receive();
-
-                if (buf.length > 0) {
-                    String message = new String(buf, StandardCharsets.UTF_8);
-
-                    if (message.equals("end"))
-                        break;
-
-                    System.out.println("Received from client: " + message);
-                }
-            }
-
-            try {
-                server.close();
-            } catch (IOException ex) {
-                Logger.getLogger(TCPSocket.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }).start();
-        
-        TCPSocket socket = new TCPSocket(new SocketAddress("127.0.0.1", 3000));
-        System.out.println("Successfully connected to client");
-        
-        Scanner in = new Scanner(System.in);
-        
-        while (true) {
-            JThreadManager.getInstance().getThreads().size();
-            String message = in.nextLine();
-            socket.send(message.getBytes(StandardCharsets.UTF_8));
-        }
-*/
-    }
 }

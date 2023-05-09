@@ -19,6 +19,13 @@ public class TrueFalseQuestion extends Question {
     
     private boolean ans;
 
+    /**
+     * Creates a true or false question
+     * <p>
+     * 
+     * @param quest  The question
+     * @param ans The answer
+     */
     TrueFalseQuestion(String quest, boolean ans) {
         super(quest, options, ans ? 0 : 1);
         this.ans = ans;

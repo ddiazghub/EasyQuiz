@@ -53,6 +53,7 @@ public class PlayerHandler {
                     
                     switch (message.get("com")) {
                         case "get":
+                            easyquiz.removePlayer(this.player.getId(), this.roomCode);
                             break;
                             
                         case "join":
@@ -62,7 +63,7 @@ public class PlayerHandler {
                             this.player.setScore(0);
                             this.roomCode = room.getId();
                             
-                            for (PlayerHandler player : room.getPlayers()) {
+                            for (PlayerHandler player : room.getPlayers().values()) {
                                 builder.append(player.getPlayer().getId())
                                         .append(";")
                                         .append(player.getPlayer().getName())
@@ -87,20 +88,19 @@ public class PlayerHandler {
                             break;
                             
                         case "ans":
-                            if ( this.lastReceived > -1) {
+                            if (this.lastReceived > -1) {
                                 return;
                             }
                             
                             this.lastReceived = Integer.parseInt(message.get("sel"));
                             this.player.setScore(this.player.getScore() + Integer.parseInt(message.get("score")));
-                            
+                            System.out.println("Player Score: " + this.player.getScore());
                             break;
                             
-                        case "add":
+                        case "exit":
+                            easyquiz.removePlayer(this.player.getId(), this.roomCode);
                             break;
                     }
-                    
-                    this.lastReceived = System.currentTimeMillis();
                 }
             }
         });

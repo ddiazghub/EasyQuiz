@@ -17,6 +17,7 @@ import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +35,7 @@ public class MainFrame extends javax.swing.JFrame {
     private final WaitingRoom waitingRoomPanel;
     private final Ans3QuestionPane ans3Panel;
     private final CountdownPanel countdownPanel;
+    private Leaderboard leaderboardPanel;
     
     /**
      * Creates new form MainFrame
@@ -41,6 +43,7 @@ public class MainFrame extends javax.swing.JFrame {
     private MainFrame() {
         initComponents();
         
+        this.setTitle("EasyQuiz");
         this.quizPanel = new QuizPanel();
         this.mainPanel.add(this.quizPanel, "quiz");
         this.cards = (CardLayout) this.mainPanel.getLayout();
@@ -55,12 +58,18 @@ public class MainFrame extends javax.swing.JFrame {
         
         this.ans3Panel = this.quizPanel.getAns3Panel();
         this.countdownPanel = this.quizPanel.getCountdownPanel();
+        
+        this.leaderboardPanel = new Leaderboard();
+        this.mainPanel.add(this.leaderboardPanel, "leaderboard");
     }
 
     public TCPSocket getSocket() {
         return socket;
     }
-
+    
+    /**
+     *@return The Socket's handler
+     */
     public SocketHandler getHandler() {
         return handler;
     }
@@ -72,7 +81,9 @@ public class MainFrame extends javax.swing.JFrame {
     public ClientRoom getRoom() {
         return room;
     }
-
+    /**
+     *@return A player object
+     */
     public Player getPlayer() {
         return player;
     }
@@ -80,13 +91,21 @@ public class MainFrame extends javax.swing.JFrame {
     public void setPlayer(Player player) {
         this.player = player;
     }
-
+    /**
+     * Adds the gained score to the player and updates the status bar accordingly
+     * 
+     * @param score  The player's earned score
+     */
     public void addScore(int score) {
         int s = this.player.getScore();
         this.player.setScore(s + score);
         this.quizPanel.setStatusBarData(this.player.getName(), s + score);
     }
-    
+    /**
+     *Displays the desired panel
+     * 
+     * @param name  The panel's name
+     */
     public void showCard(String name) {
         String[] cardPath = name.split("\\.");
         this.cards.show(this.mainPanel, cardPath[0]);
@@ -96,22 +115,54 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Adds a player to the game room
+     * 
+     * @param player  A player object
+     */
     public void roomEnter(Player player) {
+        if (this.room == null) {
+            return;
+        }
+        
         this.room.addPlayer(player);
         this.waitingRoomPanel.show(this.room);
     }
     
+    /**
+     * Removes a player from the room
+     * 
+     * @param playerId  The player's unique id.
+     */
     public void roomLeave(int playerId) {
+        if (this.room == null) {
+            return;
+        }
+        
         this.room.removePlayer(playerId);
         this.waitingRoomPanel.show(this.room);
     }
     
+    /**
+     * Adds a player to the game
+     * 
+     * @param code  The code of the room
+     * @param host  The player hosting room
+     * @param players  The HashMap with all the joined players
+     */
     public void joinRoom(UUID code, Player host, HashMap<Integer, Player> players) {
         this.room = new ClientRoom(code, host, players);
         showCard("waiting");
         this.waitingRoomPanel.show(this.room);
     }
     
+     /**
+     * Displays the loading screen for the next question
+     * 
+     * @param question  A question object
+     * @param starting  The countdown's starting number
+     * @param deadline  The time limit for the countdown
+     */
     public void nextQuestion(Question question, long starting, long deadline) {
         if (this.room == null)
             return;
@@ -121,13 +172,70 @@ public class MainFrame extends javax.swing.JFrame {
         this.quizPanel.setStatusBarData(this.player.getName(), this.player.getScore());
     }
     
+    /**
+     * Displays a three option question
+     * 
+     * @param deadline  The time limit 
+     * @param question  A question object
+     */
     public void showQuestion(Question question, long deadline) {
+        if (this.room == null) {
+            return;
+        }
+        
         showCard("quiz.ans3");
         this.ans3Panel.showQuestion((Ans3Question) question, deadline);
     }
     
+    /**
+     * Sends the chosen answer to the server.
+     * <p>
+     * 
+     * @param option  The selected option's index
+     * @param score  The score of that question
+     */
     public void sendAnswer(int option, int score) {
+        if (this.room == null) {
+            return;
+        }
+        
         this.socket.send(MessageParser.create("ans", "sel=" + option, "score=" + score));
+    }
+    
+    /**
+     * Exit room without notifying server
+     */
+    public void exitRoomNoSend() {
+        this.room = null;
+        this.player = null;
+        this.showCard("main");
+    }
+    
+    /**
+     * Exit room
+     */
+    public void exitRoom() {
+        this.exitRoomNoSend();
+        this.socket.send(MessageParser.create("exit"));
+    }
+    
+    /**
+     * Show quiz results
+     */
+    public void showResults() {
+        this.showCard("leaderboard");
+        this.leaderboardPanel.showResults(new ArrayList<>(this.room.getPlayers().values()));
+    }
+    
+    /**
+     * Show an error message
+     * 
+     * <p>
+     * 
+     * @param message  The errr message
+     */
+    public void showError(String message) {
+        JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
     /**
@@ -298,15 +406,26 @@ public class MainFrame extends javax.swing.JFrame {
         String name = this.nameField.getText();
         String code = this.codeField.getText();
         
+        if (name == null || name.isEmpty() || code == null || code.isEmpty()) {
+            this.showError("Name and room code parameters are required");
+        }
+        
         this.socket.send(MessageParser.create("join", "code=" + code, "name=" + name));
     }//GEN-LAST:event_joinBtn1ActionPerformed
 
     private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
         String name = this.nameField.getText();
         
+        if (name == null || name.isEmpty()) {
+            this.showError("Room code parameter is required");
+        }
+        
         this.socket.send(MessageParser.create("room", "name=" + name));
     }//GEN-LAST:event_newBtnActionPerformed
 
+    /**
+     *@return The instance of the frame
+     */
     public static MainFrame getInstance() {
         if (instance == null) {
             instance = new MainFrame();
@@ -314,41 +433,6 @@ public class MainFrame extends javax.swing.JFrame {
         
         return instance;
     } 
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                MainFrame.getInstance().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField codeField;

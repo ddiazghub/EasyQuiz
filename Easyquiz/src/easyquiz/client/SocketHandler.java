@@ -35,6 +35,8 @@ public class SocketHandler {
             try {
                 buffer = this.socket.receive();
             } catch (IOException ex) {
+                MainFrame.getInstance().showError("Connection failed");
+                MainFrame.getInstance().dispose();
                 this.receiveThread.stop();
                 
                 return;
@@ -83,14 +85,22 @@ public class SocketHandler {
                             
                             break;
                             
-                        case "end":
-                            break;
+                        case "res":
+                            String[] rawPlayers = message.get("players").split(",");
                             
-                        case "add":
+                            for (String rawPlayer : rawPlayers) {
+                                String[] parts = rawPlayer.split(";");
+                                
+                                if (parts.length == 2) {
+                                    player = MainFrame.getInstance().getRoom().getPlayers().get(Integer.parseInt(parts[0]));
+                                    player.setScore(Integer.parseInt(parts[1]));
+                                }
+                            }
+                            
+                            MainFrame.getInstance().showResults();
+                            
                             break;
                     }
-                    
-                    //this.lastReceived = System.currentTimeMillis();
                 }
             }
         });

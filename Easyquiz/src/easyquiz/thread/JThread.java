@@ -101,33 +101,4 @@ public class JThread {
         this.running = false;
     }
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        JThread t1 = new JThread(() -> {
-            System.out.println("Hello this is thread 1");
-        });
-        
-        JThread t2 = new JThread(() -> {
-            System.out.println("Hello this is thread 2");
-        });
-        
-        t1.start();
-        t2.start();
-        
-        long start = System.currentTimeMillis();
-        
-        while (System.currentTimeMillis() - start < 5000) {
-            
-        }
-        
-        t1.stop();
-        
-        while (System.currentTimeMillis() - start < 9000) {
-            
-        }
-        
-        t2.stop();
-    }
 }
